@@ -3,7 +3,11 @@ import { useState } from "react"
 export default function UnifiedControlledForm() {
 
     const [pending, setPending] = useState(false);
-    const [values, setValues] = useState({});
+    const [values, setValues] = useState({
+        username: '',
+        password: '',
+        remember: false
+    });
 
     const wait = (time) =>{
         return new Promise((resolve) =>{
@@ -49,7 +53,7 @@ export default function UnifiedControlledForm() {
                             type="text" 
                             id="username" 
                             name="username"
-                            value={values.username || ''}
+                            value={values.username}
                             onChange={changeHandler} 
                             className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" 
                         />
@@ -61,7 +65,7 @@ export default function UnifiedControlledForm() {
                             type="password" 
                             id="password" 
                             name="password" 
-                            value={values.password ?? ''}
+                            value={values.password}
                             onChange={changeHandler}
                             className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" 
                         />
@@ -73,7 +77,7 @@ export default function UnifiedControlledForm() {
                             type="checkbox" 
                             id="remember" 
                             name="remember" 
-                            checked = {values.remember || false}
+                            checked = {values.remember}
                             onChange={changeHandler}
                             className="ml-2 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" 
                         />
