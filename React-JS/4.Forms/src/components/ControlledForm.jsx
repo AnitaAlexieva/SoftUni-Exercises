@@ -1,8 +1,10 @@
 import { useState } from "react"
 
-export default function UncontrolledForm() {
+export default function ControlledForm() {
 
     const [pending, setPending] = useState(false);
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
 
     const wait = (time) =>{
         return new Promise((resolve) =>{
@@ -20,13 +22,6 @@ export default function UncontrolledForm() {
         //Prevent page refresh
         e.preventDefault()
 
-        //Get form data from dom
-        const formData = new FormData(e.currentTarget)
-
-        //Get form values
-        const username = formData.get('username');
-        const password = formData.get('password');
-
         //Call rest api
         await wait(1500);
 
@@ -35,19 +30,31 @@ export default function UncontrolledForm() {
 
         //Result
         console.log({ username, password});
-        
+
+    }
+
+    
+    const passChangeHanler = (e) =>{
+        setPassword(e.target.value)
+    }
+    
+    const usernameChangeHnadler = (e) =>{
+        setUsername(e.target.value)
     }
     return(
         <>
-            <h2 className="text-2xl font-semibold text-gray-700 text-center mb-4">Uncontrolled Form</h2>
+            <h2 className="text-2xl font-semibold text-gray-700 text-center mb-4">Controlled Form</h2>
 
                 <form onSubmit={submitHandler} className="bg-white p-6 rounded-xl shadow-md w-full max-w-md mx-auto space-y-4">
                     <div>
                         <label htmlFor="username" className="block text-gray-600 font-medium mb-1">Username</label>
+                        {/* If you are using value you need to use onChange */}
                         <input 
                             type="text" 
                             id="username" 
-                            name="username" 
+                            name="username"
+                            value={username}
+                            onChange={usernameChangeHnadler} 
                             className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" 
                         />
                     </div>
@@ -58,6 +65,8 @@ export default function UncontrolledForm() {
                             type="password" 
                             id="password" 
                             name="password" 
+                            value={password}
+                            onChange={passChangeHanler}
                             className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" 
                         />
                     </div>
