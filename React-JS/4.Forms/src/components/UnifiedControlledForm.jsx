@@ -3,6 +3,7 @@ import { useState } from "react"
 export default function UnifiedControlledForm() {
 
     const [pending, setPending] = useState(false);
+    //Set initial form values by input name
     const [values, setValues] = useState({
         username: '',
         password: '',
