@@ -33,12 +33,8 @@ export default function UnifiedControlledForm() {
     }
 
     const changeHandler = (e) =>{
-        console.log(e.target.name);
-        console.log(e.target.checked);
-        
-        
-        
-        setValues(state => ({...state, [e.target.name]:e.target.checked ?? e.target.value}))
+        console.log(e.target.checked)
+        setValues(state => ({...state, [e.target.name]: e.target.type === 'checkbox' ? e.target.checked : e.target.value}))
     }
 
     return(
@@ -77,7 +73,7 @@ export default function UnifiedControlledForm() {
                             type="checkbox" 
                             id="remember" 
                             name="remember" 
-                            checked = {values.remember}
+                            checked = {values.remember || false}
                             onChange={changeHandler}
                             className="ml-2 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" 
                         />
