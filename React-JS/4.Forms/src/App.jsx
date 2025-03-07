@@ -1,6 +1,7 @@
 
 
 import ControlledForm from './components/ControlledForm'
+import FormAction from './components/FormAction'
 import UncontrolledForm from './components/UncontrolledForm'
 import UnifiedControlledForm from './components/UnifiedControlledForm'
 import UseRef from './components/UseRef'
@@ -18,6 +19,8 @@ function App() {
         <UseRef />
         <br />
         <UnifiedControlledForm />
+        <br />
+        <FormAction />
     </>
   )
 }
