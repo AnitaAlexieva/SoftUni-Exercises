@@ -74,14 +74,14 @@ export default function FormAction() {
 }
 
 function Submit() {
-    const status = useFormStatus();
-
+    const {pending, data:formData} = useFormStatus();
+    console.log(formData?.get('username'))
     return (
         <div>
             <input
                 type="submit"
-                value={status.pending ? "Submitting..." : "Login"}
-                disabled={status.pending}
+                value={pending ? "Submitting..." : "Login"}
+                disabled={pending}
                 className={`w-full py-2 text-white font-medium rounded-lg transition ${
                     status.pending ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
                 }`}
