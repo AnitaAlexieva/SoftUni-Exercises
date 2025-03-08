@@ -5,6 +5,7 @@ import FormAction from './components/FormAction'
 import UncontrolledForm from './components/UncontrolledForm'
 import UnifiedControlledForm from './components/UnifiedControlledForm'
 import UseRef from './components/UseRef'
+import UseTransition from './components/UseTransition'
 
 function App() {
 
@@ -21,6 +22,8 @@ function App() {
         <UnifiedControlledForm />
         <br />
         <FormAction />
+        <br />
+        <UseTransition/>
     </>
   )
 }
