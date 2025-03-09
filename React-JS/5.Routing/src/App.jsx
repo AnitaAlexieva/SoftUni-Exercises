@@ -1,24 +1,29 @@
-import './App.css'
-import Header from './components/Header'
-import Home from './components/Home'
+  import { Routes, Route } from 'react-router'
 
-const navigation = [
-  { name: 'Home', path: '/' },
-  { name: 'Catalog', path: '/catalog' },
-  { name: 'About', path: '/about' },
-  { name: 'Contacts', path: '/contact' },
-]
+  import './App.css'
+  import Header from './components/Header'
+  import Home from './components/Home'
+  import Contact from './components/Contact'
+  import Pricing from './components/Pricing'
+ 
+
+  function App() {
 
 
-function App() {
 
-  return (
-    <div className="bg-white">
-     
-        <Header/>
-        <Home />             
-    </div>
-  )
-}
+    return (
+      <div className="bg-white">
 
-export default App
+        <Header />
+            <Routes>
+                  <Route  path='/' element={<Home/>}/>
+                  <Route path='/catalog' element={<h1>Catalog</h1>} />
+                  <Route path='/contacts' element={<Contact/>} />
+                  <Route path='/pricing' element={<Pricing />} />
+            </Routes>
+
+      </div>
+    )
+  }
+
+  export default App
