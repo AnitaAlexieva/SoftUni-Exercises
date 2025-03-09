@@ -1,21 +1,12 @@
-import { useState } from "react"
+import { useState, useTransition } from "react"
+
 
 export default function UseTransition() {
 
-    const [pending, setPending] = useState(false);
+    const [name, setName] = useState('');
+    const [pending, startTransition] = useTransition()
 
-    const wait = (time) =>{
-        return new Promise((resolve) =>{
-            setTimeout(() =>{
-                resolve('Wait is over!');
-            },time)
-        })
-    }
-
-    const submitHandler = async(e) =>{
-
-        //Set pending status
-        setPending(true);
+    const submitHandler = (e) =>{
 
         //Prevent page refresh
         e.preventDefault()
@@ -24,17 +15,14 @@ export default function UseTransition() {
         const formData = new FormData(e.currentTarget)
 
         //Get form values
-        const username = formData.get('username');
-        const password = formData.get('password');
-
-        //Call rest api
-        await wait(1500);
-
-        //Remove Pending status
-        setPending(false);
-
-        //Result
-        console.log({ username, password});
+        const character = formData.get('character');
+      
+        startTransition(async() =>{
+            //Call rest api
+              const response = await fetch(`https://swapi.dev/api/people/${character}`)
+              const result = await response.json();
+              startTransition(() => setName(result.name));
+        })
         
     }
     return(
@@ -43,21 +31,11 @@ export default function UseTransition() {
 
                 <form onSubmit={submitHandler} className="bg-white p-6 rounded-xl shadow-md w-full max-w-md mx-auto space-y-4">
                     <div>
-                        <label htmlFor="username" className="block text-gray-600 font-medium mb-1">Username</label>
+                        <label htmlFor="character" className="block text-gray-600 font-medium mb-1">Charcter - {name}</label>
                         <input 
                             type="text" 
-                            id="username" 
-                            name="username" 
-                            className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" 
-                        />
-                    </div>
-
-                    <div>
-                        <label htmlFor="password" className="block text-gray-600 font-medium mb-1">Password</label>
-                        <input 
-                            type="password" 
-                            id="password" 
-                            name="password" 
+                            id="character" 
+                            name="character" 
                             className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" 
                         />
                     </div>
@@ -65,7 +43,7 @@ export default function UseTransition() {
                     <div>
                         <input 
                             type="submit" 
-                            value="Login" 
+                            value="Get" 
                             disabled={pending} 
                             className={`w-full py-2 text-white font-medium rounded-lg transition ${
                                 pending ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
