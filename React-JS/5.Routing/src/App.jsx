@@ -4,10 +4,10 @@ import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
-  { name: 'Product', href: '#' },
-  { name: 'Features', href: '#' },
-  { name: 'Marketplace', href: '#' },
-  { name: 'Company', href: '#' },
+  { name: 'Home', path: '/' },
+  { name: 'Catalog', path: '/catalog' },
+  { name: 'About', path: '/about' },
+  { name: 'Contacts', path: '/contact' },
 ]
 
 function App() {
@@ -39,7 +39,7 @@ function App() {
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
-              <a key={item.name} href={item.href} className="text-sm/6 font-semibold text-gray-900">
+              <a key={item.name} href={item.path} className="text-sm/6 font-semibold text-gray-900">
                 {item.name}
               </a>
             ))}
@@ -77,7 +77,7 @@ function App() {
                   {navigation.map((item) => (
                     <a
                       key={item.name}
-                      href={item.href}
+                      href={item.path}
                       className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                     >
                       {item.name}
