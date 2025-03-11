@@ -44,7 +44,7 @@ export default function Header() {
                     key={item.name} 
                     to={item.path}
                     className="text-sm/6 font-semibold text-gray-900"
-                    style={({isActive}) => isActive ? {color: 'blueviolet'}:{}}
+                    style={({isActive}) => isActive ? {color: 'blueviolet'}:{   }}
                 >
 
                 {item.name}
