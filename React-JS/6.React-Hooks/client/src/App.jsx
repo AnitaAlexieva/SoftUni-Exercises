@@ -14,7 +14,7 @@ function App() {
         <Routes>
             <Route index element={<HomePage/>} />
 
-            <Route path="/chat" element={<ChatPage/>}/>
+            <Route path="/chat" element={<ChatPage url={url}/>}/>
 
               
         </Routes>

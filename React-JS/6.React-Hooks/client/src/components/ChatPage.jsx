@@ -1,9 +1,10 @@
 import useFetch from "../hooks/useFetch";
 
-import Chat from "./Chat"
 import { Spin } from "antd";
+import Chat from "./Chat";
 
-export default function ChatPage() {
+
+export default function ChatPage({url}) {
     
       const [pending, messages]= useFetch(url, []);
     
