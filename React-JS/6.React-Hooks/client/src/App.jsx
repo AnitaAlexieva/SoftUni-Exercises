@@ -6,6 +6,7 @@ import { Route,Routes } from "react-router";
 import Send from "./components/Send";
 import Login from "./components/Login";
 import { useState } from "react";
+import { UserContext } from "./contexts/UserContext";
 
 const url = 'http://localhost:3030/jsonstore/messenger'
 function App() {
@@ -18,18 +19,21 @@ function App() {
 
   return (
     <>
-        <Navigation/>
+      <UserContext.Provider value={{userLoginHandler, user}}>
 
-        <Routes>
-            <Route index element={<HomePage/>} />
+          <Navigation/>
 
-            <Route path="/chat" element={<ChatPage url={url}/>}/>
+          <Routes>
+              <Route index element={<HomePage/>} />
 
-            <Route path="/send" element={<Send user = {user} />} /> 
+              <Route path="/chat" element={<ChatPage url={url}/>}/>
 
-            <Route path="/login" element={<Login onLogin={userLoginHandler} />}/>
+              <Route path="/send" element={<Send />} /> 
 
-        </Routes>
+              <Route path="/login" element={<Login/>}/>
+
+          </Routes>
+      </UserContext.Provider>
        
     </>
   )

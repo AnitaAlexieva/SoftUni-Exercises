@@ -2,10 +2,11 @@ import {SendOutlined} from '@ant-design/icons'
 
 import { Input, Button,message } from "antd";
 import useForm from '../hooks/useForm';
+import { useContext } from 'react';
+import { UserContext } from '../contexts/UserContext';
 
-export default function Send({
-    user
-}) {
+export default function Send() {
+    const {user} = useContext(UserContext);
     const [messageApi, contextHolder] = message.useMessage();
 
     const formSubmit = async(values) =>{
