@@ -24,10 +24,10 @@ export default function Send() {
         })
     }
 
-    const {values, changeHandler, submitHandler} = useForm({
+    const {values, changeHandler, submitHandler} = useForm(formSubmit,{
         message: '',
         author:'',
-    },formSubmit)
+    })
 
   
 
