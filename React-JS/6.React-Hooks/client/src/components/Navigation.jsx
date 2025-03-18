@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router';
 
-import {HomeOutlined,  MessageOutlined} from '@ant-design/icons';
+import {HomeOutlined,  MessageOutlined, SendOutlined} from '@ant-design/icons';
 import { Menu } from 'antd';
 
 const items = [
@@ -14,6 +14,12 @@ const items = [
     label: <Link to="/chat">Chat</Link>,
     key: 'chat  ',
     icon: <MessageOutlined />,
+
+  },
+  {
+    label: <Link to="/send">Send</Link>,
+    key: 'send  ',
+    icon: <SendOutlined />,
 
   },
 
