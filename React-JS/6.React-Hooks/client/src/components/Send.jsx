@@ -1,17 +1,12 @@
 import {SendOutlined} from '@ant-design/icons'
 
 import { Input, Button,message } from "antd";
+import useForm from '../hooks/useForm';
 
 export default function Send() {
     const [messageApi, contextHolder] = message.useMessage();
 
-    const formSubmit = async(e) =>{
-        e.preventDefault();
-
-        const formData = new FormData(e.target)
-
-        const message = formData.get('message')
-
+    const formSubmit = async(values) =>{
         await fetch('http://localhost:3030/jsonstore/messenger',{
             method:'POST',
             headers:{
@@ -19,7 +14,7 @@ export default function Send() {
             },
             body:JSON.stringify({
                 author:'John Doe',
-                content:message,
+                content: values.message,
             })
         })
 
@@ -29,11 +24,27 @@ export default function Send() {
         })
     }
 
+    const {values, changeHandler, submitHandler} = useForm({
+        message: '',
+        author:'',
+    },formSubmit)
+
+  
+
     return(
         <>
             {contextHolder}
-        <form onSubmit={formSubmit}>
-                <Input size="large" name="message" placeholder="large size" prefix={<SendOutlined />} />
+        <form onSubmit={submitHandler}>
+
+                <Input 
+                size="large" 
+                name="message" 
+                value={values.message}
+                onChange={changeHandler}
+                placeholder="large size" 
+                prefix={<SendOutlined />} 
+                />
+
                 <Button type="primary" htmlType='submit'>Send</Button>
         </form>
         </>
