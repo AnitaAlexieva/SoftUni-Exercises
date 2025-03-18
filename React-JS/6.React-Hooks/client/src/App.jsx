@@ -5,9 +5,16 @@ import Navigation from "./components/Navigation";
 import { Route,Routes } from "react-router";
 import Send from "./components/Send";
 import Login from "./components/Login";
+import { useState } from "react";
 
 const url = 'http://localhost:3030/jsonstore/messenger'
 function App() {
+
+  const [user, setUser] = useState('');
+
+  const userLoginHandler = (username) =>{
+      setUser(username);
+  }
 
   return (
     <>
@@ -18,9 +25,9 @@ function App() {
 
             <Route path="/chat" element={<ChatPage url={url}/>}/>
 
-            <Route path="/send" element={<Send />} /> 
+            <Route path="/send" element={<Send user = {user} />} /> 
 
-            <Route path="/login" element={<Login />}/>
+            <Route path="/login" element={<Login onLogin={userLoginHandler} />}/>
 
         </Routes>
        

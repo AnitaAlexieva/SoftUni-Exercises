@@ -1,15 +1,25 @@
 import useForm from "../hooks/useForm"
 import { Button, Input } from "antd";
 import {SendOutlined} from '@ant-design/icons'
+import { useNavigate } from "react-router";
 
-export default function Login() {
+export default function Login({
+    onLogin,
+}) {
+    const navigate = useNavigate();
     const initialFormState ={
         username:'',
         password:'',
     }
-    const {changeHandler, submitHandler, values} = useForm((values) =>{
-        console.log(values);
-    },initialFormState);
+    const {
+        changeHandler, 
+        submitHandler, 
+        values
+    } = useForm((values) =>{
+        onLogin(values.username);
+        navigate('/send')
+    
+    } ,initialFormState);
     
     return(
         <form onSubmit={submitHandler}>
